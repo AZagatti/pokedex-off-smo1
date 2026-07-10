@@ -5,7 +5,7 @@ export default defineConfig({
   fullyParallel: true,
   projects: [{ name: "chromium", use: { ...devices["Desktop Chrome"] } }],
   reporter: "html",
-  retries: process.env.CI ? 2 : 0,
+  retries: process.env.CI ? 2 : 1,
   testDir: "e2e",
   use: {
     baseURL: "http://localhost:4319",
@@ -17,4 +17,7 @@ export default defineConfig({
     timeout: 120_000,
     url: "http://localhost:4319",
   },
+  // Tests hit the live PokeAPI; capping workers keeps us well under any
+  // rate limit and away from flakes caused by resource contention.
+  workers: 4,
 });
