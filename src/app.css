@@ -1,0 +1,55 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  color-scheme: light;
+}
+
+:root.dark {
+  color-scheme: dark;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  @apply bg-slate-50 text-slate-900 antialiased dark:bg-slate-950 dark:text-slate-50;
+}
+
+::selection {
+  @apply bg-amber-400/40;
+}
+
+.skeleton {
+  @apply animate-pulse bg-slate-200 dark:bg-slate-800;
+}
+
+@keyframes stat-fill {
+  from {
+    width: 0%;
+  }
+}
+
+.stat-bar-fill {
+  animation: stat-fill 0.8s ease-out;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .stat-bar-fill {
+    animation: none;
+  }
+}
