@@ -11,42 +11,70 @@ import {
 
 const BASE_URL = "https://pokeapi.co/api/v2";
 
-export const getPokemonList = (limit: number, offset: number) =>
-  cachedFetch(`${BASE_URL}/pokemon?limit=${limit}&offset=${offset}`, (data) =>
-    namedApiResourceListSchema.parse(data)
+export const getPokemonList = (
+  limit: number,
+  offset: number,
+  fetchImpl?: typeof fetch
+) =>
+  cachedFetch(
+    `${BASE_URL}/pokemon?limit=${limit}&offset=${offset}`,
+    (data) => namedApiResourceListSchema.parse(data),
+    fetchImpl
   );
 
-export const getPokemon = (nameOrId: string | number) =>
-  cachedFetch(`${BASE_URL}/pokemon/${nameOrId}`, (data) =>
-    pokemonSchema.parse(data)
+export const getPokemon = (
+  nameOrId: string | number,
+  fetchImpl?: typeof fetch
+) =>
+  cachedFetch(
+    `${BASE_URL}/pokemon/${nameOrId}`,
+    (data) => pokemonSchema.parse(data),
+    fetchImpl
   );
 
-export const getPokemonSpecies = (nameOrId: string | number) =>
-  cachedFetch(`${BASE_URL}/pokemon-species/${nameOrId}`, (data) =>
-    pokemonSpeciesSchema.parse(data)
+export const getPokemonSpecies = (
+  nameOrId: string | number,
+  fetchImpl?: typeof fetch
+) =>
+  cachedFetch(
+    `${BASE_URL}/pokemon-species/${nameOrId}`,
+    (data) => pokemonSpeciesSchema.parse(data),
+    fetchImpl
   );
 
-export const getEvolutionChain = (url: string) =>
-  cachedFetch(url, (data) => evolutionChainSchema.parse(data));
+export const getEvolutionChain = (url: string, fetchImpl?: typeof fetch) =>
+  cachedFetch(url, (data) => evolutionChainSchema.parse(data), fetchImpl);
 
-export const getGeneration = (id: number) =>
-  cachedFetch(`${BASE_URL}/generation/${id}`, (data) =>
-    generationSchema.parse(data)
+export const getGeneration = (id: number, fetchImpl?: typeof fetch) =>
+  cachedFetch(
+    `${BASE_URL}/generation/${id}`,
+    (data) => generationSchema.parse(data),
+    fetchImpl
   );
 
-export const getType = (name: string) =>
-  cachedFetch(`${BASE_URL}/type/${name}`, (data) =>
-    typeDetailSchema.parse(data)
+export const getType = (name: string, fetchImpl?: typeof fetch) =>
+  cachedFetch(
+    `${BASE_URL}/type/${name}`,
+    (data) => typeDetailSchema.parse(data),
+    fetchImpl
   );
 
-export const getBerryList = (limit: number, offset: number) =>
-  cachedFetch(`${BASE_URL}/berry?limit=${limit}&offset=${offset}`, (data) =>
-    namedApiResourceListSchema.parse(data)
+export const getBerryList = (
+  limit: number,
+  offset: number,
+  fetchImpl?: typeof fetch
+) =>
+  cachedFetch(
+    `${BASE_URL}/berry?limit=${limit}&offset=${offset}`,
+    (data) => namedApiResourceListSchema.parse(data),
+    fetchImpl
   );
 
-export const getBerry = (nameOrId: string | number) =>
-  cachedFetch(`${BASE_URL}/berry/${nameOrId}`, (data) =>
-    berrySchema.parse(data)
+export const getBerry = (nameOrId: string | number, fetchImpl?: typeof fetch) =>
+  cachedFetch(
+    `${BASE_URL}/berry/${nameOrId}`,
+    (data) => berrySchema.parse(data),
+    fetchImpl
   );
 
 export const POKEMON_TYPES = [
